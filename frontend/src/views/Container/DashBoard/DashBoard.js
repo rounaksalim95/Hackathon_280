@@ -28,6 +28,9 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
+import Bananas from "../../Crops/Bananas";
+import Mangoes from "../../Crops/Mangoes";
+import Walnuts from "../../Crops/Walnuts";
 import Predict from "./Predict";
 import Import from "../../Import/Import";
 import Accordion from "@mui/material/Accordion";
@@ -467,6 +470,10 @@ class DashBoard extends React.Component {
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
           {this.state.page === "import" ? <Import /> : null}
+
+          {this.state.page == "bananas" ? <Bananas /> : null}
+          {this.state.page == "mangoes" ? <Mangoes /> : null}
+          {this.state.page == "walnuts" ? <Walnuts /> : null}
 
           {this.state.page === "predict" ? <Predict /> : null}
         </Box>
