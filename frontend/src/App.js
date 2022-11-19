@@ -44,7 +44,7 @@ function App() {
                   exact
                   component={() => <DashBoard country={country} />}
                 />
-                <Route path="/predict" exact component={() => <Predict />} />
+                {/* <Route path="/predict" exact component={() => <Predict />} /> */}
                 {/* <Route path='/home' exact component={() => <Home isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />} /> */}
               </Switch>
             </ThemeProvider>

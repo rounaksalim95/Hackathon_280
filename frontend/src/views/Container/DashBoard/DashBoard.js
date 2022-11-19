@@ -368,6 +368,63 @@ class DashBoard extends React.Component {
                 </List>
               </AccordionDetails>
             </Accordion>
+
+            <Accordion
+              expanded={this.state.isExpanded === "panel4"}
+              onChange={this.handleChange("panel4")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Crop
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="importReserves"
+                      onClick={() => this.changeGraphType("importReserves")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Bananas" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={() => this.changeGraphType("goldReserves")}
+                      key="goldReserves"
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Mangoes" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      key="totalReserves"
+                      onClick={() => this.changeGraphType("totalReserves")}
+                    >
+                      <ListItemIcon>
+                        {" "}
+                        <ListItemIcon>
+                          {" "}
+                          <Arrow />
+                        </ListItemIcon>
+                      </ListItemIcon>
+                      <ListItemText primary="Walnuts" />
+                    </ListItem>
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+
             <Divider />
             <ListItem
               button
@@ -377,19 +434,6 @@ class DashBoard extends React.Component {
               {" "}
               <ListItemText primary="Import/Export" />
             </ListItem>
-
-            
-            <div>
-              <ListItem
-                
-                button
-                key="Predict"
-                onClick={() => this.changeGraphType("predict")}
-              >
-                {" "}
-                <ListItemText primary="Predict" />
-              </ListItem>
-            </div>
           </Box>
         </Drawer>
         <Box
