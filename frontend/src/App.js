@@ -7,8 +7,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import "./App.css";
 import Header from "../src/views/Header/header";
 import DashBoard from "../src/views/Container/DashBoard/DashBoard";
-import Login from "./views/Login/login";
-import Predict from "./views/Container/DashBoard/Predict";
 
 import { createMuiTheme } from "@material-ui/core/styles";
 
@@ -44,7 +42,6 @@ function App() {
                   exact
                   component={() => <DashBoard country={country} />}
                 />
-                {/* <Route path="/predict" exact component={() => <Predict />} /> */}
                 {/* <Route path='/home' exact component={() => <Home isLoggedIn={isLoggedIn} onIsLoggedIn={onIsLoggedIn} />} /> */}
               </Switch>
             </ThemeProvider>

@@ -28,10 +28,6 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
-import Bananas from "../../Crops/Bananas";
-import Mangoes from "../../Crops/Mangoes";
-import Walnuts from "../../Crops/Walnuts";
-import Predict from "./Predict";
 import Import from "../../Import/Import";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -39,6 +35,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Credit from "../../Agriculture/Credit";
+import WalnutsIran from "../../Yield/WalnutsIran";
+import MangoesPhilippines from "../../Yield/MangoesPhilippines";
 import { connect } from "react-redux";
 
 //import Profile from "../../";
@@ -50,7 +48,7 @@ class DashBoard extends React.Component {
     this.state = { 
       isExpanded: "",
       page: "gdp" ,
-      disablePredict : this.props.disablePredict
+      // disablePredict : this.props.disablePredict
   };
   // this.disableAnno = this.disableAnno.bind(this);
 //  const disableAnno =this.props.userInfo.disableAnno;
@@ -371,7 +369,6 @@ class DashBoard extends React.Component {
                 </List>
               </AccordionDetails>
             </Accordion>
-
             <Accordion
               expanded={this.state.isExpanded === "panel4"}
               onChange={this.handleChange("panel4")}
@@ -382,7 +379,7 @@ class DashBoard extends React.Component {
                 id="panel1bh-header"
               >
                 <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                  Crop
+                  Yield
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
@@ -390,44 +387,32 @@ class DashBoard extends React.Component {
                   <>
                     <ListItem
                       button
-                      key="importReserves"
-                      onClick={() => this.changeGraphType("importReserves")}
+                      key="iran"
+                      onClick={() => this.changeGraphType("walnutsiran")}
                     >
                       <ListItemIcon>
                         <Arrow />
-                      </ListItemIcon>
-                      <ListItemText primary="Bananas" />
-                    </ListItem>
-                    <ListItem
-                      button
-                      onClick={() => this.changeGraphType("goldReserves")}
-                      key="goldReserves"
-                    >
-                      <ListItemIcon>
-                        {" "}
-                        <Arrow />
-                      </ListItemIcon>
-                      <ListItemText primary="Mangoes" />
-                    </ListItem>
-                    <ListItem
-                      button
-                      key="totalReserves"
-                      onClick={() => this.changeGraphType("totalReserves")}
-                    >
-                      <ListItemIcon>
-                        {" "}
-                        <ListItemIcon>
-                          {" "}
-                          <Arrow />
-                        </ListItemIcon>
                       </ListItemIcon>
                       <ListItemText primary="Walnuts" />
                     </ListItem>
                   </>
                 </List>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="philippines"
+                      onClick={() => this.changeGraphType("mangoesphilippines")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Mangoes" />
+                    </ListItem>
+                  </>
+                </List>
               </AccordionDetails>
             </Accordion>
-
             <Divider />
             <ListItem
               button
@@ -460,6 +445,10 @@ class DashBoard extends React.Component {
           ) : null}
 
           {this.state.page === "credit" ? <Credit /> : null}
+          {/* yield */}
+          {this.state.page === "walnutsiran" ? <WalnutsIran /> : null}
+          {this.state.page === "mangoesphilippines" ? <MangoesPhilippines /> : null}
+
           {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
           {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
           {/* Debt Services */}
@@ -470,12 +459,6 @@ class DashBoard extends React.Component {
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
           {this.state.page === "import" ? <Import /> : null}
-
-          {this.state.page == "bananas" ? <Bananas /> : null}
-          {this.state.page == "mangoes" ? <Mangoes /> : null}
-          {this.state.page == "walnuts" ? <Walnuts /> : null}
-
-          {this.state.page === "predict" ? <Predict /> : null}
         </Box>
       </div>
     );

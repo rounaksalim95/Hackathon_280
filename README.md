@@ -1,17 +1,16 @@
 # 280_hackathon
 
-http://54.147.220.137:3000/ cloud link where we deployed our application
+ - cloud link where we deployed our application
 
-Akash Kuratkar (013534118), Himakshi Vijayavargiya(015351453), Komal Joshi (014682551)
-
-Running Server:
-1. Go to backend folder and do npm install
-2. After all dependencies are downloaded, do node index.js
+Anay Dilip Naik, Deepak Vellore Karunamoorthy, Rounak Salim, Shreyas Kulkarni
 
 Running Client:
-1. Go to frontend folder and do npm install
-2. After all dependencies are downloaded, do npm start
+1. Navigate to frontend folder and execute the command "npm install"
+2. Run "npm start"
 
-Hit localhost:3000 once both server and client are up and running. Following are the two personas:
-1. Government Representative: In this, user cannot see annotation option present in each graph page.
-2. Researcher: In this, annotations are visible but 'Predict' is not visible
+Running Server:
+1. Navigate to backend folder and execute the command "npm install"
+2. Run "node index.js"
+
+Run localhost:3000 in the browser window
+
