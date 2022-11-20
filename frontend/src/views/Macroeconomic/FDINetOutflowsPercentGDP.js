@@ -108,7 +108,10 @@ function FDINetOutflowsPercentGDP(props) {
       .then((res) => {
         if (res.status == 200) {
           let recs = res.data;
-
+          if(country=="Ecuador"){
+            window.alert("No Macroeconomic available for Ecuador.");
+          }
+          else{
           let fv = [["Year", "GDP"]];
           for (let i = 0; i < recs.length; i++) {
             fv.push(recs[i]);
@@ -117,6 +120,7 @@ function FDINetOutflowsPercentGDP(props) {
           console.log("year arr", fv);
           setGraphData(fv);
         }
+      }
       });
   }, [startDate, endDate, headerType, type, country]);
   return (
