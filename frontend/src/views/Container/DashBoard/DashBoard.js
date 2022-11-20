@@ -28,6 +28,9 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
+import Bananas from "../../Crops/Bananas";
+import Mangoes from "../../Crops/Mangoes";
+import Walnuts from "../../Crops/Walnuts";
 import Import from "../../Import/Import";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -45,13 +48,13 @@ const drawerWidth = 240;
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       isExpanded: "",
-      page: "gdp" ,
+      page: "gdp",
       // disablePredict : this.props.disablePredict
-  };
-  // this.disableAnno = this.disableAnno.bind(this);
-//  const disableAnno =this.props.userInfo.disableAnno;
+    };
+    // this.disableAnno = this.disableAnno.bind(this);
+    //  const disableAnno =this.props.userInfo.disableAnno;
 
   }
   handleChange = (panel) => (event, isExpanded) => {
@@ -61,7 +64,7 @@ class DashBoard extends React.Component {
     this.setState({ page: page, redirectFlag: false });
   };
 
-  componentDidMount = () => {};
+  componentDidMount = () => { };
 
   changeGraphType = (type) => {
     this.setState({
@@ -369,9 +372,69 @@ class DashBoard extends React.Component {
                 </List>
               </AccordionDetails>
             </Accordion>
+
             <Accordion
               expanded={this.state.isExpanded === "panel4"}
               onChange={this.handleChange("panel4")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Crops
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="bananas"
+                      onClick={() => this.changeGraphType("bananas")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Bananas" />
+                    </ListItem>
+                  </>
+                </List>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="mangoes"
+                      onClick={() => this.changeGraphType("mangoes")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Mangoes" />
+                    </ListItem>
+                  </>
+                </List>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="walnuts"
+                      onClick={() => this.changeGraphType("walnuts")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Walnuts" />
+                    </ListItem>
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion
+              expanded={this.state.isExpanded === "panel5"}
+              onChange={this.handleChange("panel5")}
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -413,6 +476,8 @@ class DashBoard extends React.Component {
                 </List>
               </AccordionDetails>
             </Accordion>
+
+
             <Divider />
             <ListItem
               button
@@ -459,6 +524,10 @@ class DashBoard extends React.Component {
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
           {this.state.page === "import" ? <Import /> : null}
+
+          {this.state.page === "bananas" ? <Bananas /> : null}
+          {this.state.page === "mangoes" ? <Mangoes /> : null}
+          {this.state.page === "walnuts" ? <Walnuts /> : null}
         </Box>
       </div>
     );

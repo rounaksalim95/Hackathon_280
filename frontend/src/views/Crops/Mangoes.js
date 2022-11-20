@@ -1,211 +1,48 @@
-import { useState, useEffect } from "react";
-import Row from "react-bootstrap/Row";
-import Card from "react-bootstrap/Card";
-import Slider from "@mui/material/Slider";
-import { Chart } from "react-google-charts";
-import Dropdown from "react-bootstrap/Dropdown";
-import Col from "react-bootstrap/Col";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Arrow from "@mui/icons-material/NoteAltOutlined";
-import ListItemText from "@mui/material/ListItemText";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import backendServer from "../../webConfig";
-import TextField from "@mui/material/TextField";
-const years = [
-  {
-    value: 0,
-    label: "1960",
-  },
-  {
-    value: 15,
-    label: "1970",
-  },
-  {
-    value: 30,
-    label: "1980",
-  },
-  {
-    value: 45,
-    label: "1990",
-  },
-
-  {
-    value: 60,
-    label: "2000",
-  },
-
-  {
-    value: 75,
-    label: "2010",
-  },
-  {
-    value: 90,
-    label: "2020",
-  },
-];
+import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
 
 function Mangoes(props) {
-  const [page, setPage] = useState("annualgrowth");
-  const [year, setYear] = useState([]);
-  const [val, setVal] = useState([]);
-  const [startDate, setStartDate] = useState(1980);
-  const [endDate, setEndDate] = useState(2020);
-  const country = useSelector((state) => state.userInfo.country);
-  const disableAnno = useSelector((state) => state.userInfo.disableAnno);
-  const [graphData, setGraphData] = useState([]);
-  const [value2, setValue2] = useState([0, 15]);
-  const [annotations, setAnnotations] = useState([]);
-  const minDistance = 15;
-  useEffect(() => {
-    axios
-      .get(
-        `${backendServer}/agri/getFileData/` +
-          startDate +
-          "/" +
-          endDate +
-          "/fertilizer_cons" +
-          "/" +
-          country
-      )
-      .then((res) => {
-        if (res.status == 200) {
-          let recs = res.data;
-          let yearArr = [];
-          let valArr = [];
-          // for(let i=0;i<recs.length;i++) {
-          //     let rec = recs[i];
-          //     yearArr.push(parseInt(rec.Year));
-          //     let v = rec.val==null || isNaN(rec.val)?0:rec.val;
-          //     valArr.push(parseFloat(v));
-          // }
-          // setYear(yearArr);
-          // setVal(valArr);
 
-          let fv = [["Year", "manufacturing GDP"]];
-          for (let i = 0; i < recs.length; i++) {
-            fv.push(recs[i]);
-          }
-          // }
-          console.log("year arr", fv);
-          setGraphData(fv);
-        }
-      });
-  }, [startDate, endDate, country]);
-  function valuetext(value) {
-    return `${value}`;
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyAwi3t_ncM6Ai8ZthQQsgoimwcBUx3wPo4"
+  })
+
+  const centerPhilippines = { lat: 11.332799, lng: 123.056932 }
+  const pangasinan = { lat: 15.980713, lng: 120.407195 }
+  const visayas = { lat: 10.312807, lng: 123.260525 }
+  const davao = { lat: 7.318711, lng: 125.434308 }
+  const mindanao = { lat: 8.424077, lng: 123.268533 }
+
+  const centerIndia = { lat: 15.918457, lng: 80.044207 }
+  const visakhapatnam = { lat: 17.657618, lng: 83.017234 }
+  const tirupati = { lat: 13.691804, lng: 79.616670 }
+
+  if (!isLoaded) {
+    return (
+      <div>Loading...</div>
+    );
   }
-  const addAnnotations = (e) => {
-    let val = document.getElementById("outlined-textarea");
-    let arr = annotations.map((an) => {
-      return an;
-    });
-    arr.push(val.value);
-    setAnnotations(arr);
-  };
-  const options = {
-    hAxis: {
-      format: "",
-    },
-  };
-  const handleChange2 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
 
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance);
-        setValue2([clamped, clamped + minDistance]);
-      } else {
-        const clamped = Math.max(newValue[1], minDistance);
-        setValue2([clamped - minDistance, clamped]);
-      }
-    } else {
-      setValue2(newValue);
-      setStartDate(years.find((p) => p.value === value2[0]).label);
-      setEndDate(years.find((p) => p.value === value2[1]).label);
-    }
-  };
   return (
-    <>
-      <div>
-        <div>
-          <select name="user" id="user-select">
-            <option value="Govt">Government Representive</option>
-            <option value="Researcher">Researcher</option>
-          </select>
-        </div>
+    <div style={{ display: "flex" }}>
+      <div style={{ flex: 1 }}>
+        <GoogleMap center={centerPhilippines} zoom={5} mapContainerStyle={{ width: "400px", height: "400px" }}>
+          <Marker position={pangasinan} />
+          <Marker position={visayas} />
+          <Marker position={davao} />
+          <Marker position={mindanao} />
+        </GoogleMap>
+        <span style={{ marginTop: "5px" }}><b>Philippines</b></span>
       </div>
-      &nbsp;
-      <Card>
-        <Card.Body>
-          <Row>
-            <label style={{ "font-weight": "bold" }}>Year</label>
-            <Slider
-              getAriaLabel={() => "Minimum distance shift"}
-              value={value2}
-              label={valuetext}
-              onChange={handleChange2}
-              valueLabelDisplay="auto"
-              step="15"
-              getAriaValueText={valuetext}
-              disableSwap
-              marks={years}
-            />
-          </Row>
-        </Card.Body>
-      </Card>
-      &nbsp;
-      <Card>
-        <Card.Body>
-          <Row>
-            <Col md={8}>
-              <label style={{ "font-weight": "bold" }}>
-                Credit
-              </label>
-              <Chart
-                chartType="LineChart"
-                data={graphData}
-                width="100%"
-                height="400px"
-                legendToggle
-                options={options}
-              />
-            </Col>
-            <Col md={4} hidden={disableAnno}>
-              <label style={{ "font-weight": "bold" }}>Annotations</label>
-              <List>
-                {annotations.map((p) => {
-                  return (
-                    <ListItem>
-                      <ListItemIcon size="sm">
-                        <Arrow />
-                      </ListItemIcon>
-                      <ListItemText fontSize="12" primary={p} secondary={""} />
-                    </ListItem>
-                  );
-                })}
-              </List>
-              <TextField
-                id="outlined-textarea"
-                label="Annotation"
-                placeholder="Annotation"
-                size="small"
-                multiline
-              />
-              <div>&nbsp;</div>
-              <Button variant="contained" onClick={addAnnotations}>
-                + Add Annotation
-              </Button>
-            </Col>
-          </Row>
-        </Card.Body>
-      </Card>
-    </>
+      <div style={{ marginLeft: "20px" }}>
+        <GoogleMap center={centerIndia} zoom={5} mapContainerStyle={{ width: "400px", height: "400px" }}>
+          <Marker position={visakhapatnam} />
+          <Marker position={tirupati} />
+        </GoogleMap>
+        <span style={{ marginTop: "5px" }}><b>India</b></span>
+      </div>
+    </div>
   );
 }
+
 export default Mangoes;
