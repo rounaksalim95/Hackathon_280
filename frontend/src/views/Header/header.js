@@ -36,7 +36,7 @@ function Header(props) {
   return (
     <>
       <AppBar
-        style={{ background: "#ffff" }}
+        style={{ background: "#ADD8E6" }}
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
@@ -44,8 +44,8 @@ function Header(props) {
           <Typography variant="h6" noWrap component="div">
             <Logo height="50px" width="50px" />
           </Typography>
-          <Typography fontWeight="Bold" color="Black">
-            Macro Economic & Food Security
+          <Typography fontWeight="Bold" color="Black" marginLeft={"10px"}>
+            Food Security DashBoard
           </Typography>
           &nbsp;
           <div className="row">
