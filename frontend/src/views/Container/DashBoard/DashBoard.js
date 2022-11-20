@@ -28,7 +28,6 @@ import TotalReserves from "../../Debt/TotalReserves";
 import DebtServices from "../../Debt/DebtServices";
 import TotalDebt from "../../Debt/TotalDebt";
 import CurrentGni from "../../Debt/CurrentGni";
-import Predict from "./Predict";
 import Import from "../../Import/Import";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -36,6 +35,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Credit from "../../Agriculture/Credit";
+import WalnutsIran from "../../Yield/WalnutsIran";
+import MangoesPhilippines from "../../Yield/MangoesPhilippines";
 import { connect } from "react-redux";
 
 //import Profile from "../../";
@@ -47,7 +48,7 @@ class DashBoard extends React.Component {
     this.state = { 
       isExpanded: "",
       page: "gdp" ,
-      disablePredict : this.props.disablePredict
+      // disablePredict : this.props.disablePredict
   };
   // this.disableAnno = this.disableAnno.bind(this);
 //  const disableAnno =this.props.userInfo.disableAnno;
@@ -368,6 +369,50 @@ class DashBoard extends React.Component {
                 </List>
               </AccordionDetails>
             </Accordion>
+            <Accordion
+              expanded={this.state.isExpanded === "panel4"}
+              onChange={this.handleChange("panel4")}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                  Yield
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="iran"
+                      onClick={() => this.changeGraphType("walnutsiran")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Walnuts - Iran" />
+                    </ListItem>
+                  </>
+                </List>
+                <List>
+                  <>
+                    <ListItem
+                      button
+                      key="philippines"
+                      onClick={() => this.changeGraphType("mangoesphilippines")}
+                    >
+                      <ListItemIcon>
+                        <Arrow />
+                      </ListItemIcon>
+                      <ListItemText primary="Mangoes - Philippines" />
+                    </ListItem>
+                  </>
+                </List>
+              </AccordionDetails>
+            </Accordion>
             <Divider />
             <ListItem
               button
@@ -377,19 +422,6 @@ class DashBoard extends React.Component {
               {" "}
               <ListItemText primary="Import/Export" />
             </ListItem>
-
-            
-            <div>
-              <ListItem
-                
-                button
-                key="Predict"
-                onClick={() => this.changeGraphType("predict")}
-              >
-                {" "}
-                <ListItemText primary="Predict" />
-              </ListItem>
-            </div>
           </Box>
         </Drawer>
         <Box
@@ -413,6 +445,10 @@ class DashBoard extends React.Component {
           ) : null}
 
           {this.state.page === "credit" ? <Credit /> : null}
+          {/* yield */}
+          {this.state.page === "walnutsiran" ? <WalnutsIran /> : null}
+          {this.state.page === "mangoesphilippines" ? <MangoesPhilippines /> : null}
+          
           {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
           {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
           {/* Debt Services */}
@@ -423,8 +459,6 @@ class DashBoard extends React.Component {
           {this.state.page === "totalDebt" ? <TotalDebt /> : null}
           {this.state.page === "currentGni" ? <CurrentGni /> : null}
           {this.state.page === "import" ? <Import /> : null}
-
-          {this.state.page === "predict" ? <Predict /> : null}
         </Box>
       </div>
     );
