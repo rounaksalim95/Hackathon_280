@@ -14,3 +14,5 @@ Running Server:
 
 Run localhost:3000 in the browser window
 
+Can be accessed on the cloud on - http://18.144.165.108:3000/
+
