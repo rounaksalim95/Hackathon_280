@@ -393,7 +393,7 @@ class DashBoard extends React.Component {
                       <ListItemIcon>
                         <Arrow />
                       </ListItemIcon>
-                      <ListItemText primary="Walnuts - Iran" />
+                      <ListItemText primary="Walnuts" />
                     </ListItem>
                   </>
                 </List>
@@ -407,7 +407,7 @@ class DashBoard extends React.Component {
                       <ListItemIcon>
                         <Arrow />
                       </ListItemIcon>
-                      <ListItemText primary="Mangoes - Philippines" />
+                      <ListItemText primary="Mangoes" />
                     </ListItem>
                   </>
                 </List>
@@ -448,7 +448,7 @@ class DashBoard extends React.Component {
           {/* yield */}
           {this.state.page === "walnutsiran" ? <WalnutsIran /> : null}
           {this.state.page === "mangoesphilippines" ? <MangoesPhilippines /> : null}
-          
+
           {this.state.page === "fertilizer_prod" ? <FertilizerProd /> : null}
           {this.state.page === "fertilizer_cons" ? <FertilizerCons /> : null}
           {/* Debt Services */}
