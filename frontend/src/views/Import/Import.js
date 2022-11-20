@@ -26,7 +26,7 @@ function Import(props) {
     const[graphDataSankey, setGraphDataSankey] = useState([]);
     const[yearList, setYearList] = useState([]);
     useEffect(()=> {
-        let firstyear=1960;
+        let firstyear=1986;
         let lastyear=2022;
         let yl=[];
         for(let i=firstyear;i<=lastyear;i++) {

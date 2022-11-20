@@ -48,7 +48,7 @@ function Header(props) {
             Food Security DashBoard
           </Typography>
           &nbsp;
-          <div className="row">
+          <div className="row" style={{marginLeft: "auto"}}>
             <div className="col">
               <select
                 name="Country"
